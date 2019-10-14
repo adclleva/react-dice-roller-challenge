@@ -5,9 +5,16 @@ import './Dice.css';
 class Dice extends React.Component{
     
     makeARoll = () => {
+        const { prevRollState } = this.props 
+        
         const randomNum = (Math.floor(Math.random() * 20)) + 1; // make sure to add one for the dice roll
-    
-         this.props.makeRoll(randomNum)
+        
+        const currentSpins = [...prevRollState]
+        
+        currentSpins.push(randomNum)
+
+
+         this.props.makeRoll(currentSpins)
      
     }
     
