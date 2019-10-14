@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Dice from './components/Dice/Dice.js';
+import Rolls from './components/Rolls/Rolls.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      previousRolls : []
+    }
+  }
+  
+  makeRoll = (newArr) => {
+    const { previousRolls } = this.state
+    
+    
+    this.setState({previousRolls: newArr})
+  }
+  
+  render(){
+    const { previousRolls } = this.state
+
+    return (  
+      
+      <div className="App">
+         
+          <Dice prevRollState={previousRolls} makeRoll={this.makeRoll}/>
+          <Rolls previousRollState={previousRolls}/>
+
+      </div>
+    );
+  }
+
 }
 
 export default App;
